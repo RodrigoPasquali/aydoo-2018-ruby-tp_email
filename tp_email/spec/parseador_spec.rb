@@ -42,4 +42,12 @@ describe 'Parseador' do
     expect(valor_obtenido).to eq(valor_esperado)    
   end
 
+  it 'los contactos deberian ser los mismos que en el archivos de datos1' do
+  	valor_esperado =[{"nombre"=>"juan", "apellido"=>"perez", "mail"=>"juanperez@test.com"}, {"nombre"=>"maria", "apellido"=>"gonzalez", "mail"=>"mariagonzalez@test.com"}]
+
+    archivo_parseado = parseador.parsear_archivo(data1)
+    valor_obtenido = parseador.get_contactos
+
+    expect(valor_obtenido).to eq(valor_esperado)    
+  end
 end
