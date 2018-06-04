@@ -15,7 +15,7 @@ describe 'Aplicacion Sinatra' do
 
     valorObtenido = last_response.body
 
- 	expect(last_response.status).to eq 200
+  	expect(last_response.status).to eq 200
     expect(valorObtenido).to eq valorEsperado
   end
 end
