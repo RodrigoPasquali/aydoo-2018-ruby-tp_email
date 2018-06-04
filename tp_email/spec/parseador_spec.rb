@@ -56,14 +56,24 @@ describe 'Parseador' do
   	apellido_esperado ="perez"
   	mail_esperado ="juanperez@test.com"
 
-
     archivo_parseado = parseador.parsear_archivo(data1)
     valor_obtenido = parseador.get_contactos
-    nombre1 = valor_obtenido[0]['nombre']
-    print nombre1
 
     expect(valor_obtenido[0]['nombre']).to eq(nombre_esperado)    
     expect(valor_obtenido[0]['apellido']).to eq(apellido_esperado)    
     expect(valor_obtenido[0]['mail']).to eq(mail_esperado)    
+  end
+
+  it 'los datos del segundo contacto deberian ser maria gonzalez mariagonzalez@test.com' do
+  	nombre_esperado ="maria"
+  	apellido_esperado ="gonzalez"
+  	mail_esperado ="mariagonzalez@test.com"
+
+    archivo_parseado = parseador.parsear_archivo(data1)
+    valor_obtenido = parseador.get_contactos
+
+    expect(valor_obtenido[1]['nombre']).to eq(nombre_esperado)    
+    expect(valor_obtenido[1]['apellido']).to eq(apellido_esperado)    
+    expect(valor_obtenido[1]['mail']).to eq(mail_esperado)    
   end
 end
