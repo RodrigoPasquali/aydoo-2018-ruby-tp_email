@@ -11,4 +11,5 @@ gem 'sinatra', "1.4.7"
 gem 'rack-test'
 gem 'sinatra-contrib'
 gem 'json'
-
+gem 'mail'
+gem 'tlsmail', '~> 0.0.1' if RUBY_VERSION <= '1.8.6'

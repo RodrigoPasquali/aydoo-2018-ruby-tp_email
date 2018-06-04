@@ -2,4 +2,9 @@ require 'rspec/core/rake_task'
 
 RSpec::Core::RakeTask.new(:spec)
 
+desc "Build a gem file"
+task :build do
+  system "gem build mail.gemspec"
+end
+
 task :default => :spec
