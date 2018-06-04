@@ -76,4 +76,14 @@ describe 'Parseador' do
     expect(valor_obtenido[1]['apellido']).to eq(apellido_esperado)    
     expect(valor_obtenido[1]['mail']).to eq(mail_esperado)    
   end
+
+
+  it 'los datos del evento deberian ser los mismos que en el archivos de datos1' do
+  	valor_esperado = {"remitente"=>"universidad@untref.com", "asunto"=>"Invitación a fiesta de fin de año", "nombre_evento"=>"la cena de fin de año de la UNTREF", "lugar_evento"=>"el Centro de estudios (avenida Directorio 887, Caseros)", "fecha_del_evento"=>"5 de diciembre", "Mail_de_confirmacion"=>"fiesta@untref.com"}
+
+    archivo_parseado = parseador.parsear_archivo(data1)
+    valor_obtenido = parseador.get_datos_evento
+
+    expect(valor_obtenido).to eq(valor_esperado)    
+  end  
 end

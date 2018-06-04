@@ -15,7 +15,7 @@ class Parseador
   	return @contactos = @archivo_parseado["contactos"] 
   end
 
-  def get_datos
+  def get_datos_evento
   	return @datos = @archivo_parseado["datos"]
   end
 end
