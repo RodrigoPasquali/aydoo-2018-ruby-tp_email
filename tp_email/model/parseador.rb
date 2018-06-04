@@ -3,8 +3,9 @@ require 'json'
 class Parseador
   attr_accessor :archivo_parseado, :cuerpo, :contactos
 
-  def parsear_archivo(json)
-  	return @archivo_parseado = JSON.parse(json)
+  def parsear_archivo(archivo)
+  	datos = File.read(archivo)
+  	return @archivo_parseado = JSON.parse(datos)
   end
 
   def get_cuerpo
