@@ -3,7 +3,7 @@ require_relative './model/email'
 
 get '/prueba/:nombre' do 
 	nombre = params[:nombre]
-	return 'hola ' + nombre
+	return 'hola :' + nombre
 end
 
 get '/enviar_mail/:nombre' do 
