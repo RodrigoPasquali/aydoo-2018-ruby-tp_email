@@ -1,19 +1,20 @@
-class Contactos
-  attr_reader :contactos
+class Contacto
+  attr_reader :contactos, :nombre
 
-  def initialize(datos_contactos)
-	@contactos = datos_contactos
+  def initialize(contacto)
+	  @contactos = contacto
   end
 
-  def get_nombre(posicion)
-  	return @contactos[posicion]["nombre"]
+  def get_nombre#(posicion)
+  	#return @contactos[posicion]["nombre"]
+    return @contactos["nombre"]
   end
 
-  def get_apellido(posicion)
-  	return @contactos[posicion]["apellido"]
+  def get_apellido#(posicion)
+  	return @contactos["apellido"]
   end
 
-  def get_mail(posicion)
-  	return @contactos[posicion]["mail"]
+  def get_mail#(posicion)
+  	return @contactos["mail"]
   end
 end

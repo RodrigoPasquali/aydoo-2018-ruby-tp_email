@@ -14,11 +14,13 @@ get '/enviar_mail' do
 	parseador = Parseador.new
 	parseador.parsear_archivo('./archivos_para_prueba/data1.json')
 	evento = Evento.new(parseador.get_datos_evento)
-	cuerpo = parseador.get_cuerpo
-	return enviador.enviar_mail(evento, cuerpo)
+	texto_cuerpo = parseador.get_cuerpo
+	cuerpo = Cuerpo.new(texto_cuerpo)
+	cuerpo.reemplazar_nombre(nombre)
+	return enviador.enviar_mail(evento, texto_cuerpo)
 end
 
-post '/prueba_mail' do 
+post '/' do 
 	enviador = Email.new	
 	parseador = Parseador.new
 	parseador.parsear_archivo(request.body.read)

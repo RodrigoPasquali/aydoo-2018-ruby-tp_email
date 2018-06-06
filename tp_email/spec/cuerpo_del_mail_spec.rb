@@ -9,7 +9,7 @@ describe 'Cuerpo del Mail ' do
   	valor_esperado = "Hola Juan,\n\r Por medio del presente mail te estamos invitando a <nombre_evento>, que se desarrollará en <lugar_del_evento>, el día <fecha_del_evento>. Por favor confirmar su participación enviando un mail a <mail_de_confirmacion>.\n\rSin otro particular.La direccion" 
   	nombre = "Juan"
 
-  	valor_obtenido = cuerpo.reemplazar_nombre(nombre)
+  	valor_obtenido = cuerpo.reemplazar_nombre_contacto(nombre)
 
     expect(valor_obtenido).to eq(valor_esperado)
   end
@@ -48,5 +48,5 @@ describe 'Cuerpo del Mail ' do
   	valor_obtenido = cuerpo.reemplazar_mail_de_confirmacion(mail_de_confirmacion)
 
     expect(valor_obtenido).to eq(valor_esperado)
-  end  
+  end 
 end

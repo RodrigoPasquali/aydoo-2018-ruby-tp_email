@@ -1,11 +1,11 @@
 class CuerpoDelMail
   attr_reader :cuerpo
 
-  def initialize(cuerpo_ingresado)
-  	@cuerpo = cuerpo_ingresado
+  def initialize(template)
+  	@cuerpo = template
   end
 
-  def reemplazar_nombre(nombre)
+  def reemplazar_nombre_contacto(nombre)
   	@cuerpo = @cuerpo.gsub('<nombre>', nombre)
   end
 
