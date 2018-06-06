@@ -2,6 +2,8 @@ require 'sinatra'
 require_relative './model/email'
 require_relative './model/parseador'
 require_relative './model/evento'
+require_relative './model/cuerpo_del_mail'
+require_relative './model/contacto'
 
 
 get '/prueba/:nombre' do 
@@ -10,16 +12,20 @@ get '/prueba/:nombre' do
 end
 
 get '/enviar_mail' do 
-	enviador = Email.new	
+	mail = Email.new	
 	parseador = Parseador.new
 	parseador.parsear_archivo('./archivos_para_prueba/data1.json')
 	evento = Evento.new(parseador.get_datos_evento)
-	texto_cuerpo = parseador.get_cuerpo
-	cuerpo = Cuerpo.new(texto_cuerpo)
-	cuerpo.reemplazar_nombre(nombre)
-	return enviador.enviar_mail(evento, texto_cuerpo)
+	cuerpo = CuerpoDelMail.new(parseador.get_cuerpo)
+	primer_contato = parseador.get_contactos[0]
+	contacto = Contacto.new(primer_contato)
+	cuerpo.agregar_datos_contacto(contacto)
+	cuerpo.agregar_datos_evento(evento)
+	mail.armar_cuerpo(cuerpo)
+	return mail.enviar_mail(evento)
 end
 
+=begin
 post '/' do 
 	enviador = Email.new	
 	parseador = Parseador.new
@@ -28,3 +34,4 @@ post '/' do
 	cuerpo = parseador.get_cuerpo
 	return enviador.enviar_mail(evento, cuerpo_reemplazo)
 end
+=end

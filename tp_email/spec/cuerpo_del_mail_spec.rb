@@ -56,8 +56,10 @@ describe 'Cuerpo del Mail ' do
     valor_esperado = "Hola Carlos,\n\r Por medio del presente mail te estamos invitando a mi cumple, que se desarrollará en mi casa, el día 14 de enero. Por favor confirmar su participación enviando un mail a r@mail.com.\n\rSin otro particular.La direccion" 
     contacto = Contacto.new({"nombre"=>"Carlos", "apellido"=>"perez", "mail"=>"juanperez@test.com"})
     evento = Evento.new({"remitente"=>"universidad@untref.com", "asunto"=>"Invitación a fiesta de fin de año", "nombre_evento"=>"mi cumple", "lugar_evento"=>"mi casa", "fecha_del_evento"=>"14 de enero", "Mail_de_confirmacion"=>"r@mail.com"})
-
-    valor_obtenido = cuerpo.armar_cuerpo(contacto, evento)
+    cuerpo.agregar_datos_contacto(contacto)
+    cuerpo.agregar_datos_evento(evento)
+    
+    valor_obtenido = cuerpo.reemplazar_etiquetas
 
     expect(valor_obtenido).to eq(valor_esperado)
   end 
