@@ -16,7 +16,7 @@ class Email
   end
 
   def enviar_mail(evento,cuerpo,contacto)
-     texto_cuerpo = armar_cuerpo(cuerpo,evento,contacto)   
+    texto_cuerpo = armar_cuerpo(cuerpo,evento,contacto)   
     Mail.deliver do
 	    from     evento.get_remitente
       to       contacto.get_mail
