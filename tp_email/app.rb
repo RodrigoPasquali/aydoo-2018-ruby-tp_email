@@ -24,5 +24,5 @@ post '/' do
 	cuerpo = CuerpoDelMail.new(parseador.get_cuerpo)
 	primer_contacto = parseador.get_contactos[0]
 	contacto = Contacto.new(primer_contacto)
-	mail.enviar_mail(evento, cuerpo, contacto) 
+	mail.enviar_mail(evento, cuerpo, contacto)  
 end
