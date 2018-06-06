@@ -26,11 +26,11 @@ class CuerpoDelMail
   end
 
   def agregar_datos_contacto(contacto_ingresado)
-	@contacto  = contacto_ingresado	
+	  @contacto  = contacto_ingresado	
   end
 
   def agregar_datos_evento(evento_ingresado)
- 	@evento = evento_ingresado 
+ 	  @evento = evento_ingresado 
   end
 
   def reemplazar_etiquetas

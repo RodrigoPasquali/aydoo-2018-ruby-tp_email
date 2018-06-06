@@ -5,33 +5,24 @@ require_relative './model/evento'
 require_relative './model/cuerpo_del_mail'
 require_relative './model/contacto'
 
-
-get '/prueba/:nombre' do 
-	nombre = params[:nombre]
-	return 'hola :' + nombre
-end
-
 get '/enviar_mail' do 
 	mail = Email.new	
 	parseador = Parseador.new
 	parseador.parsear_archivo('./archivos_para_prueba/data1.json')
 	evento = Evento.new(parseador.get_datos_evento)
 	cuerpo = CuerpoDelMail.new(parseador.get_cuerpo)
-	primer_contato = parseador.get_contactos[0]
-	contacto = Contacto.new(primer_contato)
-	cuerpo.agregar_datos_contacto(contacto)
-	cuerpo.agregar_datos_evento(evento)
-	mail.armar_cuerpo(cuerpo)
-	return mail.enviar_mail(evento)
+	primer_contacto = parseador.get_contactos[0]
+	contacto = Contacto.new(primer_contacto)
+	return mail.enviar_mail(evento, cuerpo, contacto)
 end
 
-=begin
 post '/' do 
-	enviador = Email.new	
+	mail = Email.new	
 	parseador = Parseador.new
-	parseador.parsear_archivo(request.body.read)
+	parseador.parsear_archivo('./archivos_para_prueba/data1.json')
 	evento = Evento.new(parseador.get_datos_evento)
-	cuerpo = parseador.get_cuerpo
-	return enviador.enviar_mail(evento, cuerpo_reemplazo)
+	cuerpo = CuerpoDelMail.new(parseador.get_cuerpo)
+	primer_contacto = parseador.get_contactos[0]
+	contacto = Contacto.new(primer_contacto)
+	mail.enviar_mail(evento, cuerpo, contacto)
 end
-=end

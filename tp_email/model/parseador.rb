@@ -5,7 +5,7 @@ class Parseador
 
   def parsear_archivo(archivo)
   	datos = File.read(archivo)
-  	return @archivo_parseado = JSON.parse(datos)
+  	@archivo_parseado = JSON.parse(datos)
   end
 
   def get_cuerpo

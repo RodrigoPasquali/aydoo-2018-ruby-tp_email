@@ -1,7 +1,7 @@
 require 'mail'
 
 class Email
-  attr_reader :contactos, :evento, :cuerpo
+  attr_accessor :contacto
 
   def initialize
     Mail.defaults do
@@ -9,17 +9,19 @@ class Email
     end
   end
 
-  def armar_cuerpo(cuerpo_ingresado)
-    @cuerpo = cuerpo_ingresado.reemplazar_etiquetas
+  def armar_cuerpo(cuerpo_ingresado, evento, contacto)
+    cuerpo_ingresado.agregar_datos_contacto(contacto)
+    cuerpo_ingresado.agregar_datos_evento(evento)
+    return cuerpo_ingresado.reemplazar_etiquetas
   end
 
-  def enviar_mail(evento)
+  def enviar_mail(evento,cuerpo,contacto)
+     texto_cuerpo = armar_cuerpo(cuerpo,evento,contacto)   
     Mail.deliver do
 	    from     evento.get_remitente
-	    to       'rodrigo.spec@hotmail.com'
+      to       contacto.get_mail
 	    subject  evento.get_asunto
-#	    body     File.read('body.txt')
-      body     @cuerpo
+      body     texto_cuerpo
 	  end
   end
 end
