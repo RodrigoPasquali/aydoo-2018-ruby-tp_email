@@ -1,5 +1,7 @@
 require 'rspec' 
 require_relative '../model/cuerpo_del_mail'
+require_relative '../model/contacto'
+require_relative '../model/evento'
 
 describe 'Cuerpo del Mail ' do
   template = "Hola <nombre>,\n\r Por medio del presente mail te estamos invitando a <nombre_evento>, que se desarrollará en <lugar_del_evento>, el día <fecha_del_evento>. Por favor confirmar su participación enviando un mail a <mail_de_confirmacion>.\n\rSin otro particular.La direccion"
@@ -49,4 +51,15 @@ describe 'Cuerpo del Mail ' do
 
     expect(valor_obtenido).to eq(valor_esperado)
   end 
+
+  it 'armar cuerpo' do
+    valor_esperado = "Hola Carlos,\n\r Por medio del presente mail te estamos invitando a mi cumple, que se desarrollará en mi casa, el día 14 de enero. Por favor confirmar su participación enviando un mail a r@mail.com.\n\rSin otro particular.La direccion" 
+    contacto = Contacto.new({"nombre"=>"Carlos", "apellido"=>"perez", "mail"=>"juanperez@test.com"})
+    evento = Evento.new({"remitente"=>"universidad@untref.com", "asunto"=>"Invitación a fiesta de fin de año", "nombre_evento"=>"mi cumple", "lugar_evento"=>"mi casa", "fecha_del_evento"=>"14 de enero", "Mail_de_confirmacion"=>"r@mail.com"})
+
+    valor_obtenido = cuerpo.armar_cuerpo(contacto, evento)
+
+    expect(valor_obtenido).to eq(valor_esperado)
+  end 
+
 end

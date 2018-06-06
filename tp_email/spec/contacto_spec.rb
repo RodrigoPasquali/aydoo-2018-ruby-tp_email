@@ -1,5 +1,5 @@
 require 'rspec' 
-require_relative '../model/contactos'
+require_relative '../model/contacto'
 
 describe 'Contactos' do
   it 'el nombre del primer contacto deberia ser juan' do 	
