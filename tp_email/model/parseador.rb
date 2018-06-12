@@ -14,7 +14,7 @@ class Parseador
   end
 
   def get_contactos
-  	return @contactos = @archivo_parseado['contactos'] 
+  	return @contactos = @archivo_parseado['contactos']
   end
 
   def get_contacto_en_posicion(posicion)

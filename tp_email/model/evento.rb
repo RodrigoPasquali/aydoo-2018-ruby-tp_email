@@ -18,7 +18,7 @@ class Evento
   end
 
   def get_lugar
-  	return @evento['lugar_evento']
+  	return @evento['lugar_del_evento']
   end
 
   def get_fecha

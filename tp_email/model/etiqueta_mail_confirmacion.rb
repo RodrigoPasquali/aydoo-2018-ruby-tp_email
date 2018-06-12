@@ -1,5 +1,5 @@
 require_relative './etiqueta'
-#require_relative './etiqueta_fecha_actual_inverso'
+require_relative './etiqueta_lugar_evento'
 
 class EtiquetaMailConfirmacion < Etiqueta
   def initialize(template, datos_contacto, datos_evento)
@@ -7,6 +7,8 @@ class EtiquetaMailConfirmacion < Etiqueta
   end
 
   def reemplazar_etiqueta
-  	@template.gsub('<mail_de_confirmacion>', @datos_evento.get_mail_confirmacion)
+  	@template = @template.gsub('<Mail_de_confirmacion>', @datos_evento.get_mail_confirmacion)
+  	@etiqueta_siguiente = EtiquetaLugarEvento.new(@template, @datos_contacto, @datos_evento)
+ 	@etiqueta_siguiente.reemplazar_etiqueta
   end
 end

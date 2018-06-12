@@ -1,5 +1,5 @@
 require_relative './etiqueta'
-require_relative './etiqueta_lugar_evento'
+require_relative './etiqueta_fecha_evento'
 
 class EtiquetaNombreEvento < Etiqueta
   def initialize(template, datos_contacto, datos_evento)
@@ -7,8 +7,8 @@ class EtiquetaNombreEvento < Etiqueta
   end
 
   def reemplazar_etiqueta
-  	cuerpo = @template.gsub('<nombre_evento>', @datos_evento.get_nombre)	
-  	@etiqueta_siguiente = EtiquetaLugarEvento.new(cuerpo, @datos_contacto, @datos_evento)
- 	@template = @etiqueta_siguiente.reemplazar_etiqueta
+  	@template = @template.gsub('<nombre_evento>', @datos_evento.get_nombre)	
+  	@etiqueta_siguiente = EtiquetaFechaEvento.new(@template, @datos_contacto, @datos_evento)
+ 	@etiqueta_siguiente.reemplazar_etiqueta
   end
 end
