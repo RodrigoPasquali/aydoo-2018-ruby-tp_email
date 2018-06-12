@@ -81,7 +81,7 @@ describe 'Parseador' do
   it 'los datos del evento deberian ser los mismos que en el archivos de datos1' do
     archivo_json = './data1.json'
     datos_json = File.read(archivo_json)
-  	valor_esperado = {"remitente"=>"universidad@untref.com", "asunto"=>"Invitación a fiesta de fin de año", "nombre_evento"=>"la cena de fin de año de la UNTREF", "lugar_del_evento"=>"el Centro de estudios (avenida Directorio 887, Caseros)", "fecha_del_evento"=>"5 de diciembre", "mail_de_confirmacion"=>"fiesta@untref.com"}
+  	valor_esperado = {"remitente"=>"universidad@untref.com", "asunto"=>"Invitación a fiesta de fin de año", "nombre_evento"=>"la cena de fin de año de la UNTREF", "lugar_del_evento"=>"el Centro de estudios (avenida Directorio 887, Caseros)", "fecha_del_evento"=>"5 de diciembre", "Mail_de_confirmacion"=>"fiesta@untref.com"}
 
     archivo_parseado = parseador.parsear_archivo(datos_json)
     valor_obtenido = parseador.get_datos_evento

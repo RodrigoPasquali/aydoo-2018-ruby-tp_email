@@ -2,7 +2,7 @@ require 'rspec'
 require_relative '../model/evento'
 
 describe 'Evento' do
-  datos_evento = {"remitente"=>"universidad@untref.com", "asunto"=>"Invitación a fiesta de fin de año", "nombre_evento"=>"la cena de fin de año de la UNTREF", "lugar_del_evento"=>"el Centro de estudios (avenida Directorio 887, Caseros)", "fecha_del_evento"=>"5 de diciembre", "mail_de_confirmacion"=>"fiesta@untref.com"}
+  datos_evento = {"remitente"=>"universidad@untref.com", "asunto"=>"Invitación a fiesta de fin de año", "nombre_evento"=>"la cena de fin de año de la UNTREF", "lugar_del_evento"=>"el Centro de estudios (avenida Directorio 887, Caseros)", "fecha_del_evento"=>"5 de diciembre", "Mail_de_confirmacion"=>"fiesta@untref.com"}
   let(:evento) { Evento.new(datos_evento) }  
 
   it 'el remitente deberia ser universidad@untref.com' do 	

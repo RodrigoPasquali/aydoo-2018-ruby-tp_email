@@ -26,6 +26,6 @@ class Evento
   end
 
   def get_mail_confirmacion
-  	return @evento['mail_de_confirmacion']
+  	return @evento['Mail_de_confirmacion']
   end
 end
