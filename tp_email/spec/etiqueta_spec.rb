@@ -5,6 +5,7 @@ require_relative '../model/evento'
 require_relative '../model/etiqueta_fecha_actual_inversa'
 require_relative '../model/etiqueta_fecha_actual_directa'
 require_relative '../model/etiqueta_pais'
+require_relative '../model/etiqueta_time'
 
 describe 'Etiqueta' do
 
@@ -89,7 +90,7 @@ describe 'Etiqueta' do
     contacto = "contacto"
     etiqueta = EtiquetaFechaActualInversa.new(template, contacto, evento)
     fecha_actual = Time.now
-    fecha_actual = fecha_actual.strftime("%Y %m %d")
+    fecha_actual = fecha_actual.strftime("%Y" + "-" + "%m" + "-" + "%d")
 
     valor_esperado = "La fecha actual es " + fecha_actual.to_s
     
@@ -104,9 +105,24 @@ describe 'Etiqueta' do
     contacto = "contacto"
     etiqueta = EtiquetaFechaActualDirecta.new(template, contacto, evento)
     fecha_actual = Time.now
-    fecha_actual = fecha_actual.strftime("%d %m %Y")
+    fecha_actual = fecha_actual.strftime("%d" + "-" + "%m" + "-" + "%Y")
 
     valor_esperado = "La fecha actual es " + fecha_actual.to_s
+    
+    valor_obtenido = etiqueta.reemplazar_etiqueta
+
+    expect(valor_esperado).to eq(valor_obtenido)    
+  end  
+
+  it 'deberia reemplazar <time> por la hora actual' do  
+    template = "La hora actual es <time>"
+    evento = "evento"
+    contacto = "contacto"
+    etiqueta = EtiquetaTime.new(template, contacto, evento)
+    fecha_actual = Time.now
+    fecha_actual = fecha_actual.strftime("%H" + ":" + "%M")
+
+    valor_esperado = "La hora actual es " + fecha_actual.to_s
     
     valor_obtenido = etiqueta.reemplazar_etiqueta
 
@@ -121,8 +137,8 @@ describe 'Etiqueta' do
     evento = Evento.new(datos_evento)
     etiqueta = EtiquetaNombreContacto.new(template, contacto, evento)
     fecha_actual = Time.now
-    fecha_actual_d = fecha_actual.strftime("%d %m %Y")
-    fecha_actual_i = fecha_actual.strftime("%Y %m %d")
+    fecha_actual_d = fecha_actual.strftime("%d" + "-" + "%m" + "-" + "%Y")
+    fecha_actual_i = fecha_actual.strftime("%Y" + "-" + "%m" + "-" + "%d")
     valor_esperado = "Fecha Actual D : " + fecha_actual_d.to_s + "\n\rHola juan,\n\r Por medio del presente mail te estamos invitando a la cena de fin de año de la UNTREF, que se desarrollará en el Centro de estudios (avenida Directorio 887, Caseros), el día 5 de diciembre. Por favor confirmar su participación enviando un mail a fiesta@untref.com.\n\rSin otro particular.La direccion\n\r" + "Fecha Actual I : " + fecha_actual_i.to_s + "\n\rPais : china"
    
     valor_obtenido = etiqueta.reemplazar_etiqueta
