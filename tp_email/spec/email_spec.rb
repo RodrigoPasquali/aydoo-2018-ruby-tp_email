@@ -2,7 +2,6 @@ require 'rspec'
 require_relative '../model/enviador_de_email'
 require_relative '../model/parseador'
 require_relative '../model/evento'
-require_relative '../model/cuerpo_del_mail'
 require_relative '../model/contacto'
 
 describe 'mail' do

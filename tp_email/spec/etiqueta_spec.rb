@@ -5,7 +5,7 @@ require_relative '../model/evento'
 
 describe 'Etiqueta' do
 
-  it 'deberia reemplazar <nombre> por "juan"' do  
+  it 'deberia reemplazar todas las etiquetas del template"' do  
     template = "Hola <nombre>,\n\r Por medio del presente mail te estamos invitando a <nombre_evento>, que se desarrollará en <lugar_del_evento>, el día <fecha_del_evento>. Por favor confirmar su participación enviando un mail a <Mail_de_confirmacion>.\n\rSin otro particular.La direccion"
     datos_contacto = [{"nombre"=>"juan", "apellido"=>"perez", "mail"=>"juanperez@test.com"}, {"nombre"=>"maria", "apellido"=>"gonzalez", "mail"=>"mariagonzalez@test.com"}]  
     contacto = Contacto.new(datos_contacto[0])
