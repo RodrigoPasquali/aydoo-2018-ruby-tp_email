@@ -27,7 +27,7 @@ post '/' do
 		mail.enviar_mail(evento, cuerpo_final, contacto_actual)
 		i = i+1
 	end
-	json({ "resultado": "OK"})
+	json({ "resultado": "ok"})
   rescue
     status 500
 	json({"resultado": "error, entrada incorrecta"})  
