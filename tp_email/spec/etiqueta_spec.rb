@@ -3,6 +3,7 @@ require_relative '../model/etiqueta_nombre_contacto'
 require_relative '../model/contacto'
 require_relative '../model/evento'
 require_relative '../model/etiqueta_fecha_actual_inversa'
+require_relative '../model/etiqueta_fecha_actual_directa'
 
 describe 'Etiqueta' do
 
@@ -35,8 +36,38 @@ describe 'Etiqueta' do
 
     expect(valor_esperado).to eq(valor_obtenido)    
   end  
+
+  it 'deberia reemplazar <Mail_de_confirmacion> por "algo@web.com"' do  
+    template = "El mail es <Mail_de_confirmacion>"
+    datos_evento = {"remitente"=>"universidad@untref.com", "asunto"=>"Invitación a fiesta de fin de año", "nombre_evento"=>"la cena de fin de año de la UNTREF", "lugar_del_evento"=>"el Centro de estudios (avenida Directorio 887, Caseros)", "fecha_del_evento"=>"5 de diciembre", "Mail_de_confirmacion"=>"algo@web.com"}
+    evento = Evento.new(datos_evento)    
+    datos_contacto =  {"nombre"=>"rodrigo", "apellido"=>"perez", "mail"=>"juanperez@test.com"}
+    contacto = Contacto.new(datos_contacto)
+    etiqueta = EtiquetaMailConfirmacion.new(template, contacto, evento)
+
+    valor_esperado = "El mail es algo@web.com" 
     
-  it 'deberia reemplazar <fecha_del_evento> por "10 de enero"' do  
+    valor_obtenido = etiqueta.reemplazar_etiqueta
+
+    expect(valor_esperado).to eq(valor_obtenido)    
+  end  
+
+  it 'deberia reemplazar <lugar_del_evento> por "mi casa"' do  
+    template = "Los invito a <lugar_del_evento>"
+    datos_evento = {"remitente"=>"universidad@untref.com", "asunto"=>"Invitación a fiesta de fin de año", "nombre_evento"=>"la cena de fin de año de la UNTREF", "lugar_del_evento"=>"mi casa", "fecha_del_evento"=>"5 de diciembre", "Mail_de_confirmacion"=>"algo@web.com"}
+    evento = Evento.new(datos_evento)    
+    datos_contacto =  {"nombre"=>"rodrigo", "apellido"=>"perez", "mail"=>"juanperez@test.com"}
+    contacto = Contacto.new(datos_contacto)
+    etiqueta = EtiquetaLugarEvento.new(template, contacto, evento)
+
+    valor_esperado = "Los invito a mi casa" 
+    
+    valor_obtenido = etiqueta.reemplazar_etiqueta
+
+    expect(valor_esperado).to eq(valor_obtenido)    
+  end  
+
+ it 'deberia reemplazar <fecha_del_evento> por "10 de enero"' do  
     template = "La reunion es el <fecha_del_evento>"
     datos_evento = {"remitente"=>"universidad@untref.com", "asunto"=>"Invitación a fiesta de fin de año", "nombre_evento"=>"la cena de fin de año de la UNTREF", "lugar_del_evento"=>"el Centro de estudios (avenida Directorio 887, Caseros)", "fecha_del_evento"=>"10 de enero", "Mail_de_confirmacion"=>"fiesta@untref.com"}
     evento = Evento.new(datos_evento)    
@@ -66,30 +97,15 @@ describe 'Etiqueta' do
     expect(valor_esperado).to eq(valor_obtenido)    
   end  
 
-  it 'deberia reemplazar <Mail_de_confirmacion> por "algo@web.com"' do  
-    template = "El mail es <Mail_de_confirmacion>"
-    datos_evento = {"remitente"=>"universidad@untref.com", "asunto"=>"Invitación a fiesta de fin de año", "nombre_evento"=>"la cena de fin de año de la UNTREF", "lugar_del_evento"=>"el Centro de estudios (avenida Directorio 887, Caseros)", "fecha_del_evento"=>"5 de diciembre", "Mail_de_confirmacion"=>"algo@web.com"}
-    evento = Evento.new(datos_evento)    
-    datos_contacto =  {"nombre"=>"rodrigo", "apellido"=>"perez", "mail"=>"juanperez@test.com"}
-    contacto = Contacto.new(datos_contacto)
-    etiqueta = EtiquetaMailConfirmacion.new(template, contacto, evento)
+  it 'deberia reemplazar <date:d> por la fecha actual de forma directa' do  
+    template = "La fecha actual es <date:d>"
+    evento = "evento"
+    contacto = "contacto"
+    etiqueta = EtiquetaFechaActualDirecta.new(template, contacto, evento)
+    fecha_actual = Time.now
+    fecha_actual = fecha_actual.strftime("%d %m %Y")
 
-    valor_esperado = "El mail es algo@web.com" 
-    
-    valor_obtenido = etiqueta.reemplazar_etiqueta
-
-    expect(valor_esperado).to eq(valor_obtenido)    
-  end  
-
-  it 'deberia reemplazar <lugar_del_evento> por "mi casa"' do  
-    template = "Los invito a <lugar_del_evento>"
-    datos_evento = {"remitente"=>"universidad@untref.com", "asunto"=>"Invitación a fiesta de fin de año", "nombre_evento"=>"la cena de fin de año de la UNTREF", "lugar_del_evento"=>"mi casa", "fecha_del_evento"=>"5 de diciembre", "Mail_de_confirmacion"=>"algo@web.com"}
-    evento = Evento.new(datos_evento)    
-    datos_contacto =  {"nombre"=>"rodrigo", "apellido"=>"perez", "mail"=>"juanperez@test.com"}
-    contacto = Contacto.new(datos_contacto)
-    etiqueta = EtiquetaMailConfirmacion.new(template, contacto, evento)
-
-    valor_esperado = "Los invito a mi casa" 
+    valor_esperado = "La fecha actual es " + fecha_actual.to_s
     
     valor_obtenido = etiqueta.reemplazar_etiqueta
 
