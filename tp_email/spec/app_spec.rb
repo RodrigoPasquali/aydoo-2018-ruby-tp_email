@@ -11,9 +11,9 @@ describe 'Aplicacion Sinatra' do
   def app
     Sinatra::Application
   end
-
+=begin
   it 'deberia obtener status 200 y el cuerpo deberia devolver "ok' do
-	archivo_json = './data1.json'
+	  archivo_json = './data1.json'
     datos_json = File.read(archivo_json)
     content = {'Content-Type' => 'application/json'}
     post '/', datos_json, content
@@ -21,7 +21,7 @@ describe 'Aplicacion Sinatra' do
     expect(last_response).to be_ok
     expect(cuerpo['resultado']).to eq 'ok'
   end
-
+=end
   it 'deberia obtener status 500 y el cuerpo deberia devolver "error, entrada incorrecta"' do
 	archivo_json = './data2_esquema_incorrecto.json'
     datos_json = File.read(archivo_json)
