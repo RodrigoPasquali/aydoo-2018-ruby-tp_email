@@ -1,5 +1,8 @@
 require 'rspec'
 require 'rack/test'
+require 'sinatra'
+require 'json'
+require 'sinatra/json'
 require_relative '../app'
 
 describe 'Aplicacion Sinatra' do
