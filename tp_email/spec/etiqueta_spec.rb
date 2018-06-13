@@ -114,7 +114,7 @@ describe 'Etiqueta' do
   end  
 
   it 'deberia reemplazar todas las etiquetas del template"' do  
-    template = "Fecha Actual D : <date:d>\n\rHola <nombre>,\n\r Por medio del presente mail te estamos invitando a <nombre_evento>, que se desarrollará en <lugar_del_evento>, el día <fecha_del_evento>. Por favor confirmar su participación enviando un mail a <Mail_de_confirmacion>.\n\rSin otro particular.La direccion\n\rFecha Actual I : <date:i>"
+    template = "Fecha Actual D : <date:d>\n\rHola <nombre>,\n\r Por medio del presente mail te estamos invitando a <nombre_evento>, que se desarrollará en <lugar_del_evento>, el día <fecha_del_evento>. Por favor confirmar su participación enviando un mail a <Mail_de_confirmacion>.\n\rSin otro particular.La direccion\n\rFecha Actual I : <date:i>\n\rPais : <empty(china,argentina)>"
     datos_contacto = [{"nombre"=>"juan", "apellido"=>"perez", "mail"=>"juanperez@test.com"}, {"nombre"=>"maria", "apellido"=>"gonzalez", "mail"=>"mariagonzalez@test.com"}]  
     contacto = Contacto.new(datos_contacto[0])
     datos_evento = {"remitente"=>"universidad@untref.com", "asunto"=>"Invitación a fiesta de fin de año", "nombre_evento"=>"la cena de fin de año de la UNTREF", "lugar_del_evento"=>"el Centro de estudios (avenida Directorio 887, Caseros)", "fecha_del_evento"=>"5 de diciembre", "Mail_de_confirmacion"=>"fiesta@untref.com"}
@@ -123,7 +123,7 @@ describe 'Etiqueta' do
     fecha_actual = Time.now
     fecha_actual_d = fecha_actual.strftime("%d %m %Y")
     fecha_actual_i = fecha_actual.strftime("%Y %m %d")
-    valor_esperado = "Fecha Actual D : " + fecha_actual_d.to_s + "\n\rHola juan,\n\r Por medio del presente mail te estamos invitando a la cena de fin de año de la UNTREF, que se desarrollará en el Centro de estudios (avenida Directorio 887, Caseros), el día 5 de diciembre. Por favor confirmar su participación enviando un mail a fiesta@untref.com.\n\rSin otro particular.La direccion\n\r" + "Fecha Actual I : " + fecha_actual_i.to_s
+    valor_esperado = "Fecha Actual D : " + fecha_actual_d.to_s + "\n\rHola juan,\n\r Por medio del presente mail te estamos invitando a la cena de fin de año de la UNTREF, que se desarrollará en el Centro de estudios (avenida Directorio 887, Caseros), el día 5 de diciembre. Por favor confirmar su participación enviando un mail a fiesta@untref.com.\n\rSin otro particular.La direccion\n\r" + "Fecha Actual I : " + fecha_actual_i.to_s + "\n\rPais : china"
    
     valor_obtenido = etiqueta.reemplazar_etiqueta
 

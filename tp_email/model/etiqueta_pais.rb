@@ -7,8 +7,10 @@ class EtiquetaPais < Etiqueta
   end
 
   def reemplazar_etiqueta
-    preocesar_etiqueta_pais(@template)
-    @template = @template.gsub(@substring_etiqueta, @pais)  
+    if(@template.include? '<empty(')
+
+      preocesar_etiqueta_pais(@template)
+      @template = @template.gsub(@substring_etiqueta, @pais)  
   	else
   	  return @template
   	end
@@ -17,7 +19,6 @@ class EtiquetaPais < Etiqueta
   end
 
   def preocesar_etiqueta_pais(template)
-    if(@template.include? '<empty(')
       @pais = ''
       posicion_inicial = @template.index("<empty(")
       posicion_final = @template.size - 1
