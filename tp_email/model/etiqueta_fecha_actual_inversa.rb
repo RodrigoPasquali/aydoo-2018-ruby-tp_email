@@ -1,3 +1,6 @@
+require_relative './etiqueta'
+require_relative './etiqueta_fecha_actual_directa'
+
 class EtiquetaFechaActualInversa < Etiqueta
   def initialize(template, datos_contacto, datos_evento)
  	super(template, datos_contacto, datos_evento)
@@ -8,7 +11,7 @@ class EtiquetaFechaActualInversa < Etiqueta
   	  fecha_actual = Time.now
       @template = @template.gsub('<date:i>', fecha_actual.strftime("%Y %m %d"))  
   	end
-#  	@etiqueta_siguiente = EtiquetaLugarEvento.new(@template, @datos_contacto, @datos_evento)
-# 	@etiqueta_siguiente.reemplazar_etiqueta
+ 	@etiqueta_siguiente = EtiquetaFechaActualDirecta.new(@template, @datos_contacto, @datos_evento)
+ 	@etiqueta_siguiente.reemplazar_etiqueta
   end
 end
