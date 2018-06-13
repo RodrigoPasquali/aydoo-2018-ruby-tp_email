@@ -1,8 +1,6 @@
 require 'mail'
 
 class EnviadorDeEmail
-  attr_accessor :contacto
-
   def initialize
     Mail.defaults do
       delivery_method :smtp, address: "localhost", port: 1025      

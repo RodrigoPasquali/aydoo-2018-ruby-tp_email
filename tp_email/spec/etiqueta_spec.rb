@@ -9,7 +9,6 @@ require_relative '../model/etiqueta_time'
 require_relative '../model/etiqueta_time_12'
 
 describe 'Etiqueta' do
-
   it 'deberia reemplazar <nombre> por "rodrigo"' do  
     template = "Mi nombre es <nombre>"
     datos_evento = {"remitente"=>"universidad@untref.com", "asunto"=>"Invitación a fiesta de fin de año", "nombre_evento"=>"la cena de fin de año de la UNTREF", "lugar_del_evento"=>"el Centro de estudios (avenida Directorio 887, Caseros)", "fecha_del_evento"=>"5 de diciembre", "Mail_de_confirmacion"=>"fiesta@untref.com"}

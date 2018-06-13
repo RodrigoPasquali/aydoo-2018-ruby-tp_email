@@ -1,7 +1,7 @@
 require 'json'
 
 class Parseador
-  attr_accessor :archivo_parseado, :cuerpo, :contactos
+  attr_accessor :archivo_parseado, :cuerpo, :contactos, :datos
 
   def parsear_archivo(archivo)
     json1 = JSON.parse(archivo)
@@ -15,10 +15,6 @@ class Parseador
 
   def get_contactos
   	return @contactos = @archivo_parseado['contactos']
-  end
-
-  def get_contacto_en_posicion(posicion)
-    return @contactos = @archivo_parseado['contactos'][posicion]     
   end
 
   def get_datos_evento

@@ -1,5 +1,5 @@
 class Contacto
-  attr_reader :contacto, :nombre
+  attr_reader :contacto
 
   def initialize(dato_contacto)
 	  @contacto = dato_contacto
