@@ -2,6 +2,7 @@ require 'rspec'
 require_relative '../model/etiqueta_nombre_contacto'
 require_relative '../model/contacto'
 require_relative '../model/evento'
+require_relative '../model/etiqueta_fecha_actual_inversa'
 
 describe 'Etiqueta' do
 
@@ -13,9 +14,25 @@ describe 'Etiqueta' do
     evento = Evento.new(datos_evento)
     etiqueta = EtiquetaNombreContacto.new(template, contacto, evento)
     valor_esperado = "Hola juan,\n\r Por medio del presente mail te estamos invitando a la cena de fin de año de la UNTREF, que se desarrollará en el Centro de estudios (avenida Directorio 887, Caseros), el día 5 de diciembre. Por favor confirmar su participación enviando un mail a fiesta@untref.com.\n\rSin otro particular.La direccion"
+   
     valor_obtenido = etiqueta.reemplazar_etiqueta
 
     expect(valor_esperado).to eq(valor_obtenido)
   end
 
+  it 'deberia reemplazar <date:i> por la fecha actual de forma inversa' do  
+    template = "La fecha actual es <date:i>"
+    evento = "evento"
+    contacto = "contacto"
+    etiqueta = EtiquetaFechaActualInversa.new(template, contacto, evento)
+    fecha_actual = Time.now
+    fecha_actual = fecha_actual.strftime("%Y %m %d")
+    print fecha_actual
+
+    valor_esperado = "La fecha actual es " + fecha_actual.to_s
+    
+    valor_obtenido = etiqueta.reemplazar_etiqueta
+
+    expect(valor_esperado).to eq(valor_obtenido)    
+  end  
 end
