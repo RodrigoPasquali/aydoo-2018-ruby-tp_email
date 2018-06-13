@@ -8,18 +8,6 @@ require_relative './model/evento'
 require_relative './model/contacto'
 require_relative './model/etiqueta_nombre_contacto'
 
-get '/enviar_mail' do 
-	mail = EnviadorDeEmail.new	
-	parseador = Parseador.new
-	parseador.parsear_archivo('./archivos_para_prueba/data1.json')
-	evento = Evento.new(parseador.get_datos_evento)
-	primer_contacto = parseador.get_contactos[0]
-	contacto = Contacto.new(primer_contacto)
-	reemplazador_de_etiqueta = EtiquetaNombreContacto.new(parseador.get_cuerpo, contacto, evento) 
-	cuerpo_final = reemplazador_de_etiqueta.reemplazar_etiqueta
-	mail.enviar_mail(evento, cuerpo_final, contacto)  
-end
-
 post '/' do 
   begin	
 	mail = EnviadorDeEmail.new	

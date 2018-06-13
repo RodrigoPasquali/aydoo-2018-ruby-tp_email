@@ -4,6 +4,7 @@ require_relative '../model/contacto'
 require_relative '../model/evento'
 require_relative '../model/etiqueta_fecha_actual_inversa'
 require_relative '../model/etiqueta_fecha_actual_directa'
+require_relative '../model/etiqueta_pais'
 
 describe 'Etiqueta' do
 
@@ -67,7 +68,7 @@ describe 'Etiqueta' do
     expect(valor_esperado).to eq(valor_obtenido)    
   end  
 
- it 'deberia reemplazar <fecha_del_evento> por "10 de enero"' do  
+  it 'deberia reemplazar <fecha_del_evento> por "10 de enero"' do  
     template = "La reunion es el <fecha_del_evento>"
     datos_evento = {"remitente"=>"universidad@untref.com", "asunto"=>"Invitación a fiesta de fin de año", "nombre_evento"=>"la cena de fin de año de la UNTREF", "lugar_del_evento"=>"el Centro de estudios (avenida Directorio 887, Caseros)", "fecha_del_evento"=>"10 de enero", "Mail_de_confirmacion"=>"fiesta@untref.com"}
     evento = Evento.new(datos_evento)    
@@ -128,4 +129,34 @@ describe 'Etiqueta' do
 
     expect(valor_esperado).to eq(valor_obtenido)
   end
+
+  it 'deberia reemplazar <empty(pais,argentina)> por "argentina"' do  
+    template = "Messi juega en <empty(pais,argentina)>"
+    datos_evento = {"remitente"=>"universidad@untref.com", "asunto"=>"Invitación a fiesta de fin de año", "nombre_evento"=>"la cena de fin de año de la UNTREF", "lugar_del_evento"=>"el Centro de estudios (avenida Directorio 887, Caseros)", "fecha_del_evento"=>"10 de enero", "Mail_de_confirmacion"=>"fiesta@untref.com"}
+    evento = Evento.new(datos_evento)    
+    datos_contacto =  {"nombre"=>"rodrigo", "apellido"=>"perez", "mail"=>"juanperez@test.com"}
+    contacto = Contacto.new(datos_contacto)
+    etiqueta = EtiquetaPais.new(template, contacto, evento)
+
+    valor_esperado = "Messi juega en argentina" 
+    
+    valor_obtenido = etiqueta.reemplazar_etiqueta
+
+    expect(valor_esperado).to eq(valor_obtenido)    
+  end  
+
+  it 'deberia reemplazar <empty(belgica,argentina)> por "belgica"' do  
+    template = "Lukaku juega en <empty(belgica,argentina)>"
+    datos_evento = {"remitente"=>"universidad@untref.com", "asunto"=>"Invitación a fiesta de fin de año", "nombre_evento"=>"la cena de fin de año de la UNTREF", "lugar_del_evento"=>"el Centro de estudios (avenida Directorio 887, Caseros)", "fecha_del_evento"=>"10 de enero", "Mail_de_confirmacion"=>"fiesta@untref.com"}
+    evento = Evento.new(datos_evento)    
+    datos_contacto =  {"nombre"=>"rodrigo", "apellido"=>"perez", "mail"=>"juanperez@test.com"}
+    contacto = Contacto.new(datos_contacto)
+    etiqueta = EtiquetaPais.new(template, contacto, evento)
+
+    valor_esperado = "Lukaku juega en belgica" 
+    valor_obtenido = etiqueta.reemplazar_etiqueta
+
+    expect(valor_esperado).to eq(valor_obtenido)    
+  end  
+
 end
