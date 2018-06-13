@@ -14,8 +14,6 @@ class EtiquetaPais < Etiqueta
   	else
   	  return @template
   	end
-#  	@etiqueta_siguiente = EtiquetaLugarEvento.new(@template, @datos_contacto, @datos_evento)
-# 	@etiqueta_siguiente.reemplazar_etiqueta
   end
 
   def preocesar_etiqueta_pais(template)

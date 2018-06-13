@@ -11,5 +11,4 @@ class EtiquetaNombreContacto < Etiqueta
  	@etiqueta_siguiente = EtiquetaNombreEvento.new(@template, @datos_contacto, @datos_evento)
     @etiqueta_siguiente.reemplazar_etiqueta		
   end
-
 end 
