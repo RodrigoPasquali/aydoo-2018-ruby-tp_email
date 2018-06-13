@@ -6,6 +6,7 @@ require_relative '../model/etiqueta_fecha_actual_inversa'
 require_relative '../model/etiqueta_fecha_actual_directa'
 require_relative '../model/etiqueta_pais'
 require_relative '../model/etiqueta_time'
+require_relative '../model/etiqueta_time_12'
 
 describe 'Etiqueta' do
 
@@ -121,6 +122,21 @@ describe 'Etiqueta' do
     etiqueta = EtiquetaTime.new(template, contacto, evento)
     fecha_actual = Time.now
     fecha_actual = fecha_actual.strftime("%H" + ":" + "%M")
+
+    valor_esperado = "La hora actual es " + fecha_actual.to_s
+    
+    valor_obtenido = etiqueta.reemplazar_etiqueta
+
+    expect(valor_esperado).to eq(valor_obtenido)    
+  end  
+
+  it 'deberia reemplazar <time:12> por la hora actual, con las horas en 1 digito' do  
+    template = "La hora actual es <time:12>"
+    evento = "evento"
+    contacto = "contacto"
+    etiqueta = EtiquetaTime12.new(template, contacto, evento)
+    fecha_actual = Time.now
+    fecha_actual = fecha_actual.strftime("%I" + ":" + "%M " "%p")
 
     valor_esperado = "La hora actual es " + fecha_actual.to_s
     
