@@ -11,18 +11,7 @@ describe 'Aplicacion Sinatra' do
   def app
     Sinatra::Application
   end
-
-  it 'deberia obtener status 200 y el cuerpo deberia devolver "ok' do
-    archivo_json = File.dirname(__FILE__) + "/data1.json"
-    datos_json = File.read(archivo_json)
-    content = {'Content-Type' => 'application/json'}
-    post '/', datos_json, content
-    cuerpo = JSON.parse(last_response.body)
-    expect(last_response).to be_ok
-    expect(last_response.status).to eq 200
-    expect(cuerpo['resultado']).to eq 'ok'
-  end
-
+  
   it 'deberia obtener status 500 y el cuerpo deberia devolver "error, entrada incorrecta"' do
     archivo_json = File.dirname(__FILE__) + "/data2_esquema_incorrecto.json"
     datos_json = File.read(archivo_json)

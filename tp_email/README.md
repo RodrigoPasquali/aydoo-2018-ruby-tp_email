@@ -2,7 +2,7 @@
 FUNCIONAMIENTO DE LA APLICACION
 
 -Etiquetas erroneas se ignoran
--Etiqueta para pais se considera de la siguiente manera : 
+-Etiqueta para pais se considera de la siguiente manera :  "<empty(pais,argentina)>" 
 -Al introducir el comando (curl -X POST -H "Content-Type: application/json" --data @data1.json localhost:4567/) el test que se encontraba en app_spec funcionaba de forma correcta devolviendo status 200, pero al subir el codigo a github travis falla, por lo que quite el test. No logro encontra el motivo por el que travis falla.
 #Test devuelve un status 500
 		=begin
@@ -22,10 +22,9 @@ FUNCIONAMIENTO DE LA APLICACION
 FUNCIONAMIENTO FALTANTE
 
 -Etiqueta para realizar sumatoria : "<sum(monto1, monto2)>: debe reemplazarse por la suma de los placesholders monto1 y monto2"
--Falta diagrama de secuencia
 -No se realizan validaciones para datos incompletos (ejemplo : un contacto no pose nombre en archivo json)
 -Expeciones en cada caso particular que lo amerite (relacionado con el item de arriba, si falta un mail deberia enviar una expecion de que falta mail)
 
 POSIBLES MEJORAS
 
--Quitar logica del metodo Post '/' de la clase app.rb --> el while podria introducirse en otra clase
+-Quitar logica del metodo Post '/' de la clase app.rb --> el while podria introducirse en otra clase/s
