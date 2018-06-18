@@ -14,25 +14,32 @@ describe 'Aplicacion Sinatra' do
 
   it 'deberia obtener status 200 y el cuerpo deberia devolver "ok' do
     archivo_json = File.dirname(__FILE__) + "/data1.json"
-    puts '1****************** ARCHIVO *********************************1'
-    puts archivo_json
-    puts '1****************** ARCHIVO ******************************1'
+#    puts '1****************** ARCHIVO *********************************1'
+#    puts archivo_json
+#    puts '1****************** ARCHIVO ******************************1'
     datos_json = File.read(archivo_json)
-    puts '2****************** DATOS_JSON ********************************2'   
-    puts datos_json
-    puts '2****************** DATOS_JSON *********************************2'
-    content = {'Content-Type' => 'application/json'}
+#    puts '2****************** DATOS_JSON ********************************2'   
+#    puts datos_json
+#    puts '2****************** DATOS_JSON *********************************2'
+    content = {'CONTENT-TYPE' => 'application/json'}
     post '/', datos_json, content
-    puts '3****************** RESPONSE_BODY *********************************3'    
-    puts last_response.body
-    puts '3****************** RESPONSE_BODY *********************************3'    
-    puts '4****************** LAST_RESPONSE *********************************4'    
-    puts last_response
-    puts '4****************** RESPONSE_BODY *********************************4'    
+#    puts '3****************** RESPONSE_BODY *********************************3'    
+#    puts last_response.body
+#    puts '3****************** RESPONSE_BODY *********************************3'    
+#    puts '4****************** LAST_RESPONSE *********************************4'    
+#    puts last_response
+#    puts '4****************** RESPONSE_BODY *********************************4'    
     cuerpo = JSON.parse(last_response.body)
     expect(last_response).to be_ok
     expect(last_response.status).to eq 200
     expect(cuerpo['resultado']).to eq 'ok'
+  end
+
+    it 'deberia obtener status 200 y el cuerpo deberia devolver "ok"' do
+    archivo_json = File.dirname(__FILE__) + "/data1.json"
+    datos_json = File.read(archivo_json)
+    post '/', datos_json
+    expect(last_response).to be_ok
   end
 
   it 'deberia obtener status 500 y el cuerpo deberia devolver "error, entrada incorrecta"' do
