@@ -12,14 +12,14 @@ post '/' do
   begin	
 	mail = EnviadorDeEmail.new	
 	parseador = Parseador.new
-    puts '*********************PARAMS******************************'
-	puts params
-    puts '*********************PARAMS******************************'
+#    puts '*********************PARAMS******************************'
+#	puts params
+#    puts '*********************PARAMS******************************'
 	archivo = request.body.read
-    puts '*********************ARCHIVO******************************'
-    puts archivo
+#    puts '*********************ARCHIVO******************************'
+#    puts archivo
 #	puts "Archivo: #{archivo}"
-    puts '*********************PARAMS******************************'
+#    puts '*********************PARAMS******************************'
 	parseador.parsear_archivo(archivo)
 	evento = Evento.new(parseador.get_datos_evento)
 	cuerpo = parseador.get_cuerpo
