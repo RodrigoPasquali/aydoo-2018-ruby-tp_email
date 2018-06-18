@@ -24,5 +24,8 @@ class EnviadorDeEmail
 	    subject  evento.get_asunto
       body     cuerpo.to_s
  	  end
+
+      puts 'xxxxxxxxxxxxxxxxxxPASO ENVIO DE MAILxxxxxxxxxxxxxxxxxxxxxxxx' 
+
   end
 end
