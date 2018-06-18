@@ -12,18 +12,24 @@ post '/' do
   begin	
 	mail = EnviadorDeEmail.new	
 	parseador = Parseador.new
+    puts '*********************PARAMS******************************'
+	puts params
+    puts '*********************PARAMS******************************'
 	archivo = request.body.read
+    puts '*********************ARCHIVO******************************'
+    puts archivo
 #	puts "Archivo: #{archivo}"
+    puts '*********************PARAMS******************************'
 	parseador.parsear_archivo(archivo)
-	datos_evento = parseador.get_datos_evento
+	evento = Evento.new(parseador.get_datos_evento)
 	cuerpo = parseador.get_cuerpo
-	lista_contactos = parseador.get_contactos
-	evento = Evento.new(datos_evento)		
+	parseador.get_contactos
+	lista_contactos = parseador.contactos
 	cantidad_contactos = lista_contactos.length - 1
 	i = 0
 	while (i <= cantidad_contactos)
 		contacto_actual = Contacto.new(lista_contactos[i])
-		reemplazador_de_etiqueta = EtiquetaNombreContacto.new(cuerpo, contacto_actual, evento) 
+		reemplazador_de_etiqueta = EtiquetaNombreContacto.new(parseador.get_cuerpo, contacto_actual, evento) 
 		cuerpo_final = reemplazador_de_etiqueta.reemplazar_etiqueta
 		mail.enviar_mail(evento, cuerpo_final, contacto_actual)
 		i = i+1
