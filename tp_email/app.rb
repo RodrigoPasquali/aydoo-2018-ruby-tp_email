@@ -18,13 +18,22 @@ post '/' do
 	archivo = request.body.read
     puts '*********************ARCHIVO******************************'
     puts archivo
-	puts "Archivo: #{archivo}"
-    puts '*********************PARAMS******************************'
+#	puts "Archivo: #{archivo}"
+    puts '*********************ARCHIVO******************************'
 	parseador.parsear_archivo(archivo)
+    puts '*********************EVENTO******************************'
 	evento = Evento.new(parseador.get_datos_evento)
+    puts evento
+    puts '*********************EVENTO******************************'
+    puts '*********************CUERPO******************************'
 	cuerpo = parseador.get_cuerpo
+	puts cuerpo
+    puts '*********************CUERPO******************************'
 	parseador.get_contactos
+	puts '*********************CONTACTOS******************************'
 	lista_contactos = parseador.contactos
+	puts lista_contactos
+    puts '*********************CONTACTOS******************************'
 	cantidad_contactos = lista_contactos.length - 1
 	i = 0
 	while (i <= cantidad_contactos)
