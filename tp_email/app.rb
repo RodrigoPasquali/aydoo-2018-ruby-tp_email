@@ -42,13 +42,15 @@ post '/' do
 	while (i <= cantidad_contactos)
 		puts '*********************CONTACTO ACTUAL******************************'
 		contacto_actual = Contacto.new(lista_contactos[i])
-		puts contacto_actual
+		puts contacto_actual.get_nombre
+	    puts contacto_actual.get_apellido
+	    puts contacto_actual.get_mail
 	    puts '*********************CONTACTO ACTUAL******************************'	
 		reemplazador_de_etiqueta = EtiquetaNombreContacto.new(parseador.get_cuerpo, contacto_actual, evento) 
 		cuerpo_final = reemplazador_de_etiqueta.reemplazar_etiqueta
-	    puts '*********************ARCHIVO******************************'
+	    puts '*********************CUERPO FINAL******************************'
 	    puts cuerpo_final
-	    puts '*********************ARCHIVO******************************'
+	    puts '*********************CUERPO FINAL******************************'
 		mail.enviar_mail(evento, cuerpo_final, contacto_actual)
 		i = i+1
 	end
