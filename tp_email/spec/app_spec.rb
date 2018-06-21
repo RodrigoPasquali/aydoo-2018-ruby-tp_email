@@ -14,7 +14,7 @@ describe 'Aplicacion Sinatra' do
 
   it 'deberia obtener status 200 y el cuerpo deberia devolver "ok' do
     EnviadorDeEmail.any_instance.stub(:enviar_mail)
-    archivo_json = './data1.json'
+    archivo_json = './archivos_para_prueba/data1.json'
     datos_json = File.read(archivo_json)
     content = {'Content-Type' => 'application/json'}
     post '/', datos_json, content
@@ -26,7 +26,7 @@ describe 'Aplicacion Sinatra' do
 
   it 'deberia obtener status 500 y el cuerpo deberia devolver "error, entrada incorrecta"' do
     EnviadorDeEmail.any_instance.stub(:enviar_mail)
-    archivo_json = File.dirname(__FILE__) + "/data2_esquema_incorrecto.json"
+    archivo_json = './archivos_para_prueba/data2_esquema_incorrecto.json'
     datos_json = File.read(archivo_json)
     content = {'Content-Type' => 'application/json'}
     post '/', datos_json, content
