@@ -1,0 +1,19 @@
+{
+    "template":"Hola <nombre>, cuando sumo 1 y 3 obtengo  <time:12> y <time>",
+    "contactos":[
+       {
+          "nombre":"juan",
+          "apellido":"perez",
+          "mail":"aydoo@mailinator.com"
+       },
+       {
+        "nombre":"juan",
+        "apellido":"perez",
+        "mail":"aydoo@mailinator.com"
+        }
+    ],
+    "datos":{
+       "remitente": "universidad@untref.com",
+       "asunto":"Ejemplo 9: Prueba time"
+    }
+ }
