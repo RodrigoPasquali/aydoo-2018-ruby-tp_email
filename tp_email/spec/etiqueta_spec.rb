@@ -7,6 +7,7 @@ require_relative '../model/etiqueta_fecha_actual_directa'
 require_relative '../model/etiqueta_pais'
 require_relative '../model/etiqueta_time'
 require_relative '../model/etiqueta_time_12'
+require_relative '../model/etiqueta_suma'
 
 describe 'Etiqueta' do
   it 'deberia reemplazar <nombre> por "rodrigo"' do  
@@ -168,6 +169,36 @@ describe 'Etiqueta' do
     etiqueta = EtiquetaPais.new(template, contacto, evento)
 
     valor_esperado = "Lukaku juega en belgica" 
+    valor_obtenido = etiqueta.reemplazar_etiqueta
+
+    expect(valor_esperado).to eq(valor_obtenido)    
+  end  
+
+  it 'deberia reemplazar <sum(1,3)> por "4"' do  
+    template = "Cuando sumo 1 y 3 obtengo <sum(1,3)>"
+    datos_evento = {"remitente"=>"universidad@untref.com", "asunto"=>"Invitación a fiesta de fin de año", "nombre_evento"=>"la cena de fin de año de la UNTREF", "lugar_del_evento"=>"mi casa", "fecha_del_evento"=>"5 de diciembre", "mail_de_confirmacion"=>"algo@web.com"}
+    evento = Evento.new(datos_evento)    
+    datos_contacto =  {"nombre"=>"rodrigo", "apellido"=>"perez", "mail"=>"juanperez@test.com"}
+    contacto = Contacto.new(datos_contacto)
+    etiqueta = EtiquetaSuma.new(template, contacto, evento)
+
+    valor_esperado = "Cuando sumo 1 y 3 obtengo 4" 
+    
+    valor_obtenido = etiqueta.reemplazar_etiqueta
+
+    expect(valor_esperado).to eq(valor_obtenido)    
+  end  
+
+  it 'deberia reemplazar <sum(50,7)> por "57"' do  
+    template = "Cuando sumo 50 y 7 obtengo <sum(50,7)>"
+    datos_evento = {"remitente"=>"universidad@untref.com", "asunto"=>"Invitación a fiesta de fin de año", "nombre_evento"=>"la cena de fin de año de la UNTREF", "lugar_del_evento"=>"mi casa", "fecha_del_evento"=>"5 de diciembre", "mail_de_confirmacion"=>"algo@web.com"}
+    evento = Evento.new(datos_evento)    
+    datos_contacto =  {"nombre"=>"rodrigo", "apellido"=>"perez", "mail"=>"juanperez@test.com"}
+    contacto = Contacto.new(datos_contacto)
+    etiqueta = EtiquetaSuma.new(template, contacto, evento)
+
+    valor_esperado = "Cuando sumo 50 y 7 obtengo 57" 
+    
     valor_obtenido = etiqueta.reemplazar_etiqueta
 
     expect(valor_esperado).to eq(valor_obtenido)    
