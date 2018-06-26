@@ -18,16 +18,16 @@ class EtiquetaPais < Etiqueta
   end
 
   def preocesar_etiqueta_pais(template)
-      cuerpo = @template
-      @pais = ''
-      posicion_inicial = cuerpo.index("<empty(")
-      posicion_final = cuerpo.size - 1
-      cuerpo =  cuerpo[posicion_inicial..posicion_final]
-      posicion_final = cuerpo.index(">")
-      @substring_etiqueta = cuerpo[0..posicion_final]
-      posicion_inicial = @substring_etiqueta.index(",") + 1
-      posicion_final = @substring_etiqueta.index(")") - 1
-      @pais = @substring_etiqueta[posicion_inicial..posicion_final] 
-      @pais = @pais.strip
+    cuerpo = @template
+    @pais = ''
+    posicion_inicial = cuerpo.index("<empty(")
+    posicion_final = cuerpo.size - 1
+    cuerpo =  cuerpo[posicion_inicial..posicion_final]
+    posicion_final = cuerpo.index(">")
+    @substring_etiqueta = cuerpo[0..posicion_final]
+    posicion_inicial = @substring_etiqueta.index(",") + 1
+    posicion_final = @substring_etiqueta.index(")") - 1
+    @pais = @substring_etiqueta[posicion_inicial..posicion_final] 
+    @pais = @pais.strip
   end
 end

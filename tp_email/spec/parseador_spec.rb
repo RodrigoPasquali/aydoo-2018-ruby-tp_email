@@ -101,7 +101,5 @@ describe 'Parseador' do
     valor_obtenido = parseador.get_datos_evento
 
     expect(valor_obtenido).to eq(valor_esperado)    
-  end  
-
-  
+  end    
 end

@@ -11,7 +11,7 @@ class EtiquetaFechaActualInversa < Etiqueta
   	  fecha_actual = Time.now
       @template = @template.gsub('<date:i>', fecha_actual.strftime("%Y" + "-" + "%m" + "-" + "%d"))  
   	end
- 	@etiqueta_siguiente = EtiquetaFechaActualDirecta.new(@template, @datos_contacto, @datos_evento)
- 	@etiqueta_siguiente.reemplazar_etiqueta
+ 	  @etiqueta_siguiente = EtiquetaFechaActualDirecta.new(@template, @datos_contacto, @datos_evento)
+ 	  @etiqueta_siguiente.reemplazar_etiqueta
   end
 end

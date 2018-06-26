@@ -10,7 +10,7 @@ class EtiquetaFechaEvento < Etiqueta
   	if (@template.include? '<fecha_del_evento>') 
   	  @template = @template.gsub('<fecha_del_evento>', @datos_evento.get_fecha)
   	end
-  	@etiqueta_siguiente = EtiquetaMailConfirmacion.new(@template, @datos_contacto, @datos_evento)
-  	@etiqueta_siguiente.reemplazar_etiqueta
+  	  @etiqueta_siguiente = EtiquetaMailConfirmacion.new(@template, @datos_contacto, @datos_evento)
+  	  @etiqueta_siguiente.reemplazar_etiqueta
   end
 end

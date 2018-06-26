@@ -11,7 +11,7 @@ class EtiquetaLugarEvento < Etiqueta
   	if (@template.include? '<lugar_del_evento>')   	
       @template = @template.gsub('<lugar_del_evento>', @datos_evento.get_lugar)
     end
-    @etiqueta_siguiente = EtiquetaFechaActualInversa.new(@template, @datos_contacto, @datos_evento)
- 	@etiqueta_siguiente.reemplazar_etiqueta
+      @etiqueta_siguiente = EtiquetaFechaActualInversa.new(@template, @datos_contacto, @datos_evento)
+ 	  @etiqueta_siguiente.reemplazar_etiqueta
   end
 end
