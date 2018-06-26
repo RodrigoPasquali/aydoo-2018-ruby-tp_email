@@ -1,4 +1,5 @@
 require_relative './etiqueta'
+require_relative './etiqueta_suma'
 
 class EtiquetaTime12 < Etiqueta
   def initialize(template, datos_contacto, datos_evento)

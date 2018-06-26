@@ -10,8 +10,6 @@ require_relative './model/etiqueta_nombre_contacto'
 
 post '/' do 
   begin	
- #require 'byebug'
- #byebug
 	mail = EnviadorDeEmail.new	
 	parseador = Parseador.new
 	archivo = request.body.read
@@ -25,9 +23,6 @@ post '/' do
 	while (i <= cantidad_contactos)
 		contacto_actual = Contacto.new(lista_contactos[i])
 		reemplazador_de_etiqueta = EtiquetaNombreContacto.new(parseador.get_cuerpo, contacto_actual, evento) 
-#require 'byebug'
-# byebug
-
 		cuerpo_final = reemplazador_de_etiqueta.reemplazar_etiqueta
 		mail.enviar_mail(evento, cuerpo_final, contacto_actual)
 		i = i+1

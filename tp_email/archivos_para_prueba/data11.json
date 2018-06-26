@@ -1,0 +1,14 @@
+{
+    "template":"Hola <nombre>",
+    "contactos":[
+       {
+          "nombre":"juan",
+          "apellido":"perez",
+          "mail":"juanperez@test.com"
+       }
+    ],
+    "datos":{
+       "remitente": "universidad@untref.com",
+       "asunto":"Ejemplo 1: Caso etiqueta simple"
+    }
+ }

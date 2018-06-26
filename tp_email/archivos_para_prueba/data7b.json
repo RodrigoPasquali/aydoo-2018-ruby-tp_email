@@ -1,0 +1,14 @@
+{
+    "template":"Hola <nombre> estamos en <empty(pais, camerun)>",
+    "contactos":[
+       {
+          "nombre":"juan",
+          "apellido":"perez",
+          "mail":"aydoo@mailinator.com"
+       }
+    ],
+    "datos":{
+       "remitente": "universidad@untref.com",
+       "asunto":"Ejemplo 7b: Prueba empty"
+    }
+ }

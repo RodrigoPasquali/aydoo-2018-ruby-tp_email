@@ -1,3 +1,5 @@
+require_relative './etiqueta'
+
 class EtiquetaSuma < Etiqueta
   attr_accessor :substring_etiqueta, :resultado_suma
 
