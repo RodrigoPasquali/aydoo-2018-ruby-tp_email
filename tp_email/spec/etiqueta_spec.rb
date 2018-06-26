@@ -145,7 +145,7 @@ describe 'Etiqueta' do
   end  
 
   it 'deberia reemplazar <empty(pais,argentina)> por "argentina"' do  
-    template = "Messi juega en <empty(pais,argentina)>"
+    template = "Messi juega en <empty(pais, argentina)>"
     datos_evento = {"remitente"=>"universidad@untref.com", "asunto"=>"Invitación a fiesta de fin de año", "nombre_evento"=>"la cena de fin de año de la UNTREF", "lugar_del_evento"=>"el Centro de estudios (avenida Directorio 887, Caseros)", "fecha_del_evento"=>"10 de enero", "mail_de_confirmacion"=>"fiesta@untref.com"}
     evento = Evento.new(datos_evento)    
     datos_contacto =  {"nombre"=>"rodrigo", "apellido"=>"perez", "mail"=>"juanperez@test.com"}
@@ -159,8 +159,8 @@ describe 'Etiqueta' do
     expect(valor_esperado).to eq(valor_obtenido)    
   end  
 
-  it 'deberia reemplazar <empty(belgica,argentina)> por "belgica"' do  
-    template = "Lukaku juega en <empty(belgica,argentina)>"
+  it 'deberia reemplazar <empty(pais, belgica)> por "belgica"' do  
+    template = "Lukaku juega en <empty(pais, belgica)>"
     datos_evento = {"remitente"=>"universidad@untref.com", "asunto"=>"Invitación a fiesta de fin de año", "nombre_evento"=>"la cena de fin de año de la UNTREF", "lugar_del_evento"=>"el Centro de estudios (avenida Directorio 887, Caseros)", "fecha_del_evento"=>"10 de enero", "mail_de_confirmacion"=>"fiesta@untref.com"}
     evento = Evento.new(datos_evento)    
     datos_contacto =  {"nombre"=>"rodrigo", "apellido"=>"perez", "mail"=>"juanperez@test.com"}
@@ -174,7 +174,7 @@ describe 'Etiqueta' do
   end  
 
   it 'deberia reemplazar todas las etiquetas del template"' do  
-    template = "Fecha Actual D : <date:d>  Hora Actual(24hs) : <time> \n\rHola <nombre>,\n\r Por medio del presente mail te estamos invitando a <nombre_evento>, que se desarrollará en <lugar_del_evento>, el día <fecha_del_evento>. Por favor confirmar su participación enviando un mail a <mail_de_confirmacion>.\n\rSin otro particular.La direccion\n\rFecha Actual I : <date:i>  Hora Actual(12hs) : <time:12>\n\rPais : <empty(china,argentina)>"
+    template = "Fecha Actual D : <date:d>  Hora Actual(24hs) : <time> \n\rHola <nombre>,\n\r Por medio del presente mail te estamos invitando a <nombre_evento>, que se desarrollará en <lugar_del_evento>, el día <fecha_del_evento>. Por favor confirmar su participación enviando un mail a <mail_de_confirmacion>.\n\rSin otro particular.La direccion\n\rFecha Actual I : <date:i>  Hora Actual(12hs) : <time:12>\n\rPais : <empty(pais, china)>"
     datos_contacto = [{"nombre"=>"juan", "apellido"=>"perez", "mail"=>"juanperez@test.com"}, {"nombre"=>"maria", "apellido"=>"gonzalez", "mail"=>"mariagonzalez@test.com"}]  
     contacto = Contacto.new(datos_contacto[0])
     datos_evento = {"remitente"=>"universidad@untref.com", "asunto"=>"Invitación a fiesta de fin de año", "nombre_evento"=>"la cena de fin de año de la UNTREF", "lugar_del_evento"=>"el Centro de estudios (avenida Directorio 887, Caseros)", "fecha_del_evento"=>"5 de diciembre", "mail_de_confirmacion"=>"fiesta@untref.com"}

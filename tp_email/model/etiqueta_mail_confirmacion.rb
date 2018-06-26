@@ -7,9 +7,6 @@ class EtiquetaMailConfirmacion < Etiqueta
   end
 
   def reemplazar_etiqueta
-#  	if (@template.include? '<Mail_de_confirmacion>') 
-#  	  @template = @template.gsub('<Mail_de_confirmacion>', @datos_evento.get_mail_confirmacion)
-#  	end
   	if (@template.include? '<mail_de_confirmacion>')
   	  @template = @template.gsub('<mail_de_confirmacion>', @datos_evento.get_mail_confirmacion)
   	end
