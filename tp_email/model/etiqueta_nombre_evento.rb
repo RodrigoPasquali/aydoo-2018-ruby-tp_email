@@ -7,7 +7,9 @@ class EtiquetaNombreEvento < Etiqueta
   end
 
   def reemplazar_etiqueta
-  	@template = @template.gsub('<nombre_evento>', @datos_evento.get_nombre)	
+  	if (@template.include? '<nombre_evento>') 
+  	  @template = @template.gsub('<nombre_evento>', @datos_evento.get_nombre)	
+  	end
   	@etiqueta_siguiente = EtiquetaFechaEvento.new(@template, @datos_contacto, @datos_evento)
  	@etiqueta_siguiente.reemplazar_etiqueta
   end

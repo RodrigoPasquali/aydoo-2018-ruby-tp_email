@@ -10,6 +10,8 @@ require_relative './model/etiqueta_nombre_contacto'
 
 post '/' do 
   begin	
+ #require 'byebug'
+ #byebug
 	mail = EnviadorDeEmail.new	
 	parseador = Parseador.new
 	archivo = request.body.read

@@ -88,4 +88,18 @@ describe 'Parseador' do
 
     expect(valor_obtenido).to eq(valor_esperado)    
   end  
+
+  it 'los datos del evento deberian ser los mismos que en el archivos de datos1' do
+    archivo_json = './archivos_para_prueba/data3.json'
+    datos_json = File.read(archivo_json)
+    valor_esperado = {
+       "asunto"=>"Ejemplo 3: Caso etiquetas varias",
+       "remitente"=> "no-reply@test.com",
+       "lugar_cumple"=>"Avenida de mayo 1333"
+    }
+    archivo_parseado = parseador.parsear_archivo(datos_json)
+    valor_obtenido = parseador.get_datos_evento
+
+    expect(valor_obtenido).to eq(valor_esperado)    
+  end  
 end
