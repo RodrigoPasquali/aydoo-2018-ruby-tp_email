@@ -9,8 +9,8 @@ class EtiquetaTime12 < Etiqueta
   	if (@template.include? '<time:12>') 
   	  time_actual = Time.now
       @template = @template.gsub('<time:12>', time_actual.strftime("%I" + ":" + "%M " "%p"))  
-    else
-      return @template
-    end  
+    end
+      @etiqueta_siguiente = EtiquetaSuma.new(@template, @datos_contacto, @datos_evento)
+      @etiqueta_siguiente.reemplazar_etiqueta  
   end
 end

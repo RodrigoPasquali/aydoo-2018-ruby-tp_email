@@ -9,6 +9,8 @@ class EtiquetaSuma < Etiqueta
     if(@template.include? '<sum(')
       preocesar_etiqueta_suma(@template)
       @template = @template.gsub(@substring_etiqueta, @resultado_suma)  
+    else
+      return @template
     end
   end
 
@@ -16,7 +18,10 @@ class EtiquetaSuma < Etiqueta
     cuerpo = @template
     posicion_inicial = cuerpo.index("<sum(")
     posicion_final = cuerpo.size - 1
-    @substring_etiqueta = cuerpo[posicion_inicial, posicion_final]
+    posicion_final = cuerpo.size - 1
+    cuerpo =  cuerpo[posicion_inicial..posicion_final]
+    posicion_final = cuerpo.index(">")
+    @substring_etiqueta = cuerpo[0..posicion_final]
     @substring_etiqueta = @substring_etiqueta.strip
     posicion_inicial = @substring_etiqueta.index("(") + 1
     posicion_final =  @substring_etiqueta.index(",") - 1
