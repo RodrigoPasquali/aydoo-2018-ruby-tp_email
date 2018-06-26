@@ -24,11 +24,8 @@ class EtiquetaPais < Etiqueta
       posicion_final = cuerpo.size - 1
       @substring_etiqueta = cuerpo[posicion_inicial, posicion_final]
       posicion_inicial = @substring_etiqueta.index(",") + 1
-      @substring_pais = @substring_etiqueta[posicion_inicial, posicion_final]
-      @substring_pais = @substring_pais.strip
-      @substring_pais.each_char {|c| 
-        break if(c == ')')
-        @pais = @pais + c             
-      }
+      posicion_final = @substring_etiqueta.index(")") - 1
+      @pais = @substring_etiqueta[posicion_inicial..posicion_final] 
+      @pais = @pais.strip
   end
 end
