@@ -34,7 +34,6 @@ describe 'Aplicacion Sinatra' do
     cuerpo = JSON.parse(last_response.body)
     expect(last_response).not_to be_ok
     expect(last_response.status).to eq 500
-
     expect(cuerpo['resultado']).to eq 'error, entrada incorrecta'
   end
 

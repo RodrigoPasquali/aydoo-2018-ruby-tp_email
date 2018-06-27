@@ -6,6 +6,9 @@ class Evento
   end
 
   def get_remitente
+    if (@evento['remitente'].nil?)
+      raise FaltaMailDeRemitenteException
+    end
   	return @evento['remitente']
   end
 
@@ -26,7 +29,6 @@ class Evento
   end
 
   def get_mail_confirmacion
-#  	return @evento['Mail_de_confirmacion']
     return @evento['mail_de_confirmacion']
   end
 end

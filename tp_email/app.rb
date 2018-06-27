@@ -8,6 +8,8 @@ require_relative './model/evento'
 require_relative './model/contacto'
 require_relative './model/etiqueta_nombre_contacto'
 require_relative './excepciones/faltan_contactos_json_exception'
+require_relative './excepciones/falta_mail_contacto_exception'
+require_relative './excepciones/falta_mail_de_remitente_exception'
 
 post '/' do 
   begin	
@@ -30,6 +32,12 @@ post '/' do
 	end
 	json({ "resultado": "ok"})
   rescue FaltaDatosDeContactosException
+  	status 500
+	json({"resultado": "error, entrada incorrecta"})  
+  rescue FaltaMailDeRemitenteException
+  	status 500
+	json({"resultado": "error, entrada incorrecta"})  
+  rescue FaltaMailDeContactoException
   	status 500
 	json({"resultado": "error, entrada incorrecta"})  
   rescue 
