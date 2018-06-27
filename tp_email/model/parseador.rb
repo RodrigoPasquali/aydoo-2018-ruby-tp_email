@@ -10,6 +10,9 @@ class Parseador
   end
 
   def get_cuerpo
+    if (@archivo_parseado['template'].nil?)
+      raise FaltaTemplateException 
+    end
   	return @cuerpo = @archivo_parseado['template']
   end
 

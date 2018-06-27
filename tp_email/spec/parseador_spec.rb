@@ -1,5 +1,7 @@
 require 'rspec' 
 require_relative '../model/parseador'
+require_relative '../excepciones/falta_template_json_exception'
+require_relative '../excepciones/faltan_contactos_json_exception'
 
 describe 'Parseador' do
   let(:parseador) { Parseador.new }  
@@ -87,6 +89,24 @@ describe 'Parseador' do
     valor_obtenido = parseador.get_datos_evento
 
     expect(valor_obtenido).to eq(valor_esperado)    
+  end  
+
+  it 'deberia arrojar FaltaTemplateException cuando template es nil' do
+    archivo_json = './archivos_para_prueba/data13.json'
+    datos_json = File.read(archivo_json)
+
+    archivo_parseado = parseador.parsear_archivo(datos_json)
+
+    expect{parseador.get_cuerpo}.to raise_error(FaltaTemplateException)
+  end  
+
+  it 'deberia arrojar FaltaDatosDeContactosException cuando contactos es nil' do
+    archivo_json = './archivos_para_prueba/data2_esquema_incorrecto.json'
+    datos_json = File.read(archivo_json)
+
+    archivo_parseado = parseador.parsear_archivo(datos_json)
+
+    expect{parseador.get_contactos}.to raise_error(FaltaDatosDeContactosException)
   end  
 
   it 'los datos del evento deberian ser los mismos que en el archivos de datos1' do

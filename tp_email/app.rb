@@ -10,6 +10,7 @@ require_relative './model/etiqueta_nombre_contacto'
 require_relative './excepciones/faltan_contactos_json_exception'
 require_relative './excepciones/falta_mail_contacto_exception'
 require_relative './excepciones/falta_mail_de_remitente_exception'
+require_relative './excepciones/falta_template_json_exception'
 
 post '/' do 
   begin	
@@ -38,6 +39,9 @@ post '/' do
   	status 500
 	json({"resultado": "error, entrada incorrecta"})  
   rescue FaltaMailDeContactoException
+  	status 500
+	json({"resultado": "error, entrada incorrecta"})  
+  rescue FaltaTemplateException
   	status 500
 	json({"resultado": "error, entrada incorrecta"})  
   rescue 
