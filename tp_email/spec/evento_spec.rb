@@ -21,6 +21,13 @@ describe 'Evento' do
     expect{evento_sin_remitente.get_remitente}.to raise_error(FaltaMailDeRemitenteException)
   end
 
+  it 'obtener el remitente deberia devolver FaltaMailDeRemitenteException cuando remitente es vacio' do   
+    datos_evento_sin_remitente = {"remitente"=>"", "asunto"=>"Invitación a fiesta de fin de año", "nombre_evento"=>"la cena de fin de año de la UNTREF", "lugar_del_evento"=>"el Centro de estudios (avenida Directorio 887, Caseros)", "fecha_del_evento"=>"5 de diciembre", "mail_de_confirmacion"=>"fiesta@untref.com"}
+    evento_sin_remitente = Evento.new(datos_evento_sin_remitente)
+
+    expect{evento_sin_remitente.get_remitente}.to raise_error(FaltaMailDeRemitenteException)
+  end
+
   it 'el asunto deberia ser "Invitación a fiesta de fin de año"' do 	
   	valor_esperado = 'Invitación a fiesta de fin de año' 
 

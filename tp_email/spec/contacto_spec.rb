@@ -14,6 +14,13 @@ describe 'Contactos' do
   end
 
   it 'deberia devolver FaltaMailDeContactoException cuando mail es nil' do  
+    lista_contactos = [{"nombre"=>"juan", "apellido"=>"perez", "mail"=>""}, {"nombre"=>"maria", "apellido"=>"gonzalez", "mail"=>"mariagonzalez@test.com"}]  
+    contacto = Contacto.new(lista_contactos[0])
+
+    expect{contacto.get_mail}.to raise_error(FaltaMailDeContactoException)
+  end
+
+  it 'deberia devolver FaltaMailDeContactoException cuando mail es vacio' do  
     lista_contactos = [{"nombre"=>"juan", "apellido"=>"perez"}, {"nombre"=>"maria", "apellido"=>"gonzalez", "mail"=>"mariagonzalez@test.com"}]  
     contacto = Contacto.new(lista_contactos[0])
 

@@ -16,7 +16,7 @@ class Contacto
   end
 
   def get_mail
-    if (@contacto["mail"].nil?)
+    if (@contacto["mail"].nil? or @contacto["mail"] == '')
       raise FaltaMailDeContactoException
     end
   	return @contacto["mail"]

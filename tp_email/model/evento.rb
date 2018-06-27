@@ -6,7 +6,7 @@ class Evento
   end
 
   def get_remitente
-    if (@evento['remitente'].nil?)
+    if (@evento['remitente'].nil? or  @evento['remitente'] == '')
       raise FaltaMailDeRemitenteException
     end
   	return @evento['remitente']
