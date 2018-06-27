@@ -1,3 +1,5 @@
+require_relative '../excepciones/falta_mail_contacto_exception'
+
 class Contacto
   attr_reader :contacto
 
@@ -14,6 +16,9 @@ class Contacto
   end
 
   def get_mail
+    if (@contacto["mail"].nil?)
+      raise FaltaMailDeContactoException
+    end
   	return @contacto["mail"]
   end
 end

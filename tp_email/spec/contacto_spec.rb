@@ -1,5 +1,6 @@
 require 'rspec' 
 require_relative '../model/contacto'
+require_relative '../excepciones/falta_mail_contacto_exception'
 
 describe 'Contactos' do
   it 'el nombre del primer contacto deberia ser juan' do 	
@@ -10,6 +11,13 @@ describe 'Contactos' do
   	valor_obtenido = contacto.get_nombre
 
     expect(valor_obtenido).to eq(valor_esperado)
+  end
+
+  it 'deberia devolver FaltaMailDeContactoException cuando mail es nil' do  
+    lista_contactos = [{"nombre"=>"juan", "apellido"=>"perez"}, {"nombre"=>"maria", "apellido"=>"gonzalez", "mail"=>"mariagonzalez@test.com"}]  
+    contacto = Contacto.new(lista_contactos[0])
+
+    expect{contacto.get_mail}.to raise_error(FaltaMailDeContactoException)
   end
 
   it 'el apellido del primer contacto deberia ser perez' do 	

@@ -4,6 +4,7 @@ require 'sinatra'
 require 'json'
 require 'sinatra/json'
 require_relative '../app'
+require_relative '../excepciones/faltan_contactos_json_exception'
 
 describe 'Aplicacion Sinatra' do
   include Rack::Test::Methods
@@ -33,6 +34,7 @@ describe 'Aplicacion Sinatra' do
     cuerpo = JSON.parse(last_response.body)
     expect(last_response).not_to be_ok
     expect(last_response.status).to eq 500
+
     expect(cuerpo['resultado']).to eq 'error, entrada incorrecta'
   end
 
@@ -142,5 +144,5 @@ describe 'Aplicacion Sinatra' do
     expect(last_response).to be_ok
     expect(last_response.status).to eq 200
     expect(cuerpo['resultado']).to eq 'ok'
-  end  
+  end
 end

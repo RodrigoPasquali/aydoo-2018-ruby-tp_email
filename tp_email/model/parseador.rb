@@ -14,6 +14,9 @@ class Parseador
   end
 
   def get_contactos
+    if (@archivo_parseado['contactos'].nil?)
+      raise FaltaDatosDeContactosException
+    end
   	return @contactos = @archivo_parseado['contactos']
   end
 

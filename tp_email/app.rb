@@ -7,6 +7,7 @@ require_relative './model/parseador'
 require_relative './model/evento'
 require_relative './model/contacto'
 require_relative './model/etiqueta_nombre_contacto'
+require_relative './excepciones/faltan_contactos_json_exception'
 
 post '/' do 
   begin	
@@ -28,7 +29,10 @@ post '/' do
 		i = i+1
 	end
 	json({ "resultado": "ok"})
-  rescue
+  rescue FaltaDatosDeContactosException
+  	status 500
+	json({"resultado": "error, entrada incorrecta"})  
+  rescue 
     status 500
 	json({"resultado": "error, entrada incorrecta"})  
   end
