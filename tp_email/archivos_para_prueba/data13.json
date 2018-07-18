@@ -1,0 +1,24 @@
+{
+    "contactos":[
+       {
+          "nombre":"juan",
+          "apellido":"perez",
+          "mail":"juanperez@test.com"
+       },
+       {
+          "nombre":"maria",
+          "apellido":"gonzalez",
+          "mail":"mariagonzalez@test.com"
+       },
+       {
+        "nombre":"marta",
+        "apellido":"rodriguez",
+        "mail":"mro@test.com"
+     }
+    ],
+    "datos":{
+       "asunto":"Ejemplo 3: Caso etiquetas varias",
+       "remitente": "no-reply@test.com",
+       "lugar_cumple":"Avenida de mayo 1333"
+    }
+ }

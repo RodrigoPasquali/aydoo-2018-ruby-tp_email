@@ -6,6 +6,9 @@ class Evento
   end
 
   def get_remitente
+    if (@evento['remitente'].nil? or  @evento['remitente'] == '')
+      raise FaltaMailDeRemitenteException
+    end
   	return @evento['remitente']
   end
 
@@ -18,7 +21,7 @@ class Evento
   end
 
   def get_lugar
-  	return @evento['lugar_evento']
+  	return @evento['lugar_del_evento']
   end
 
   def get_fecha
@@ -26,6 +29,6 @@ class Evento
   end
 
   def get_mail_confirmacion
-  	return @evento['Mail_de_confirmacion']
+    return @evento['mail_de_confirmacion']
   end
 end

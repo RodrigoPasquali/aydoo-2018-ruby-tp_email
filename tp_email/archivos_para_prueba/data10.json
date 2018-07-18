@@ -1,0 +1,14 @@
+{
+    "template":"Hola <nombre> y <nombre>",
+    "contactos":[
+       {
+          "nombre":"juan",
+          "apellido":"perez",
+          "mail":"aydoo@mailinator.com"
+       }
+    ],
+    "datos":{
+       "remitente": "universidad@untref.com",
+       "asunto":"Ejemplo 10: tag usado dos veces"
+    }
+ }
